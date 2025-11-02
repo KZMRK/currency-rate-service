@@ -1,0 +1,20 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${CURRENCY_SERVICE_DB_USER:currency_service_user}
+    password: ${CURRENCY_SERVICE_DB_PASSWORD:password}
+    url: ${CURRENCY_SERVICE_DB_URL:jdbc:postgresql://localhost:5432/currency_service_db}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+logging:
+  level:
+    com.kazmiruk.currencyrateservice.client.CurrenciesMockApi: debug
+
+currency-mock:
+  domain: ${CURRENCY_MOCK_DOMAIN:http://localhost:8080}
+  api-key: ${CURRENCY_MOCK_API_KEY:secret-key}

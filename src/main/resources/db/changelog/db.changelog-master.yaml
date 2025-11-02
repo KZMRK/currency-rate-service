@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+            tableName: currency_rates
+      id: 1
+      author: kazmiruk
+      runOnChange: false
+      comment: Create new table currency_rates
+      changes:
+        - createTable:
+            tableName: currency_rates
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency
+                  type: varchar(3)
+              - column:
+                  name: rate
+                  type: numeric(21, 16)
